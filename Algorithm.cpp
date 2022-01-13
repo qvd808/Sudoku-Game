@@ -223,3 +223,12 @@ Board HardMode()
     Board board = GeneratePuzzle(cells);
     return board;
 }
+
+int Hint(Board solution, int row, int col){
+    row -= 1;
+    col -= 1;
+    if ((0 <= row && row <= 8) && (0 <= col && col <= 8))
+        return solution[row][col];
+    else
+        return -1;
+}
