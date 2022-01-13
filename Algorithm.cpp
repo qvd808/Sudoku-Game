@@ -203,7 +203,7 @@ Board GeneratePuzzle(int cell)
 
 Board EasyMode(){
     srand(time(NULL));
-    int cells = rand() % 10 + 40;
+    int cells = rand() % 15 + 44;
     Board board = GeneratePuzzle(cells);
     return board;
 }
@@ -211,7 +211,7 @@ Board EasyMode(){
 Board NormalMode()
 {
     srand(time(NULL));
-    int cells = rand() % 10 + 30;
+    int cells = rand() % 10 + 34;
     Board board = GeneratePuzzle(cells);
     return board;
 }
@@ -219,7 +219,7 @@ Board NormalMode()
 Board HardMode()
 {
     srand(time(NULL));
-    int cells = rand() % 5 + 25;
+    int cells = rand()% 6 + 27;
     Board board = GeneratePuzzle(cells);
     return board;
 }
