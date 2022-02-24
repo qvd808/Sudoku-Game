@@ -109,7 +109,7 @@ bool GenerateBoard(Board board)
     board[row][col] = 0;
     return false;
 }
-
+//Return the copy of the current Board
 Board CopyBoard(Board board)
 {
     Board result = new vector<int>[9];
@@ -123,6 +123,8 @@ Board CopyBoard(Board board)
     return result;
 }
 
+//Input: Board and a vector of Board to record the solutions
+//Output: Return the number of solutions a Board can have. Our aim is to have exactly one solutions
 vector<Board> &TestUnique(Board board, vector<Board> &solutions)
 {
     int memorize = board[8][8];
@@ -166,6 +168,8 @@ vector<Board> &TestUnique(Board board, vector<Board> &solutions)
     return solutions;
 }
 
+//Intput: number of cell needed to delete
+//Output: A Sudoku puzzle has a unique solution with that number of cells deleted
 Board GeneratePuzzle(int cell)
 {
     srand(time(NULL));
@@ -199,7 +203,7 @@ Board GeneratePuzzle(int cell)
 
 Board EasyMode(){
     srand(time(NULL));
-    int cells = rand() % 10 + 40;
+    int cells = rand() % 15 + 44;
     Board board = GeneratePuzzle(cells);
     return board;
 }
@@ -207,7 +211,7 @@ Board EasyMode(){
 Board NormalMode()
 {
     srand(time(NULL));
-    int cells = rand() % 10 + 30;
+    int cells = rand() % 10 + 34;
     Board board = GeneratePuzzle(cells);
     return board;
 }
@@ -215,76 +219,16 @@ Board NormalMode()
 Board HardMode()
 {
     srand(time(NULL));
-    int cells = rand() % 10 + 20;
+    int cells = rand()% 6 + 27;
     Board board = GeneratePuzzle(cells);
     return board;
 }
 
-int main()
-{
-    ////First Test
-    // Board board = MakeBoard();
-    // GenerateBoard(board);
-    // board[5][5] = 0;
-
-    // for (int i(0); i < 9; i++)
-    // {
-    //     for (int j(0); j < 9; j++)
-    //     {
-    //         cout << board[i][j] << " ";
-    //     }
-    //     cout << endl;
-    // }
-
-    // vector<Board> solutions;
-    // solutions = TestUnique(board, solutions);
-    // if (solutions.size() != 0){
-    //     cout << solutions.size() << endl;
-    // } else{
-    //     cout << "It is not working!!!" << endl;
-    // }
-
-    // for (int i(0); i < 9; i++)
-    // {
-    //     for (int j(0); j < 9; j++)
-    //     {
-    //         cout << board[i][j] << " ";
-    //     }
-    //     cout << endl;
-    // }
-
-    // delete board;
-
-    ////Second Test
-    Board board = HardMode();
-
-    for (int i(0); i < 9; i++)
-    {
-        for (int j(0); j < 9; j++)
-        {
-            cout << board[i][j] << " ";
-        }
-        cout << endl;
-    }
-
-    cout << endl
-         << endl;
-
-    vector<Board> solutions;
-    solutions = TestUnique(board, solutions);
-    for (int i(0); i < solutions.size(); i++)
-    {
-        for (int j(0); j < 9; j++)
-        {
-            for (int k(0); k < 9; k++)
-            {
-                cout << solutions.at(i)[j][k] << " ";
-            }
-            cout << endl;
-        }
-    }
-
-    delete board;
-
-    return 0;
+int Hint(Board solution, int row, int col){
+    row -= 1;
+    col -= 1;
+    if ((0 <= row && row <= 8) && (0 <= col && col <= 8))
+        return solution[row][col];
+    else
+        return -1;
 }
